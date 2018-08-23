@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Nhtsa;
 
+use App\Http\Requests\Nhtsa\VehiclesPostRequest;
 use App\Services\Nhtsa\SafetyRatingsService;
 
 class SafetyRatingsController extends BaseController
@@ -29,4 +30,14 @@ class SafetyRatingsController extends BaseController
     {
         return response()->json($this->service->modelYear($model_year, $manufacturer, $model));
     }
+
+    /**
+     * @param VehiclesPostRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function vehiclesWithPost(VehiclesPostRequest $request)
+    {
+        return response()->json($this->service->modelYear($request->modelYear, $request->manufacturer, $request->model));
+    }
+
 }
