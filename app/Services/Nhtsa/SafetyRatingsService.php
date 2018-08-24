@@ -33,18 +33,21 @@ class SafetyRatingsService extends BaseApiService
 
             if ($response->getStatusCode() === 200) {
                 $result = \GuzzleHttp\json_decode($response->getBody());
-                $data['Count'] = $result->Count;
 
                 $data['Results'] = array_map(function ($item) use ($withRating) {
-                    $vehicle = [
-                        'Description' => $item->VehicleDescription,
-                        'VehicleId' => $item->VehicleId,
-                    ];
-                    if ($withRating) {
-                        $vehicle['CrashRating'] = $this->vehicleId($item->VehicleId);
+                    if ($item->VehicleDescription && $item->VehicleId) {
+                        $vehicle = [
+                            'Description' => $item->VehicleDescription,
+                            'VehicleId' => $item->VehicleId,
+                        ];
+                        if ($withRating) {
+                            $vehicle['CrashRating'] = $this->vehicleId($item->VehicleId);
+                        }
+                        return $vehicle;
                     }
-                    return $vehicle;
                 }, $result->Results);
+
+                $data['Count'] = \count($data['Results']);
             }
         } catch (\Exception $exception) {
             Log::error(' API ERROR : ' . $exception->getMessage());

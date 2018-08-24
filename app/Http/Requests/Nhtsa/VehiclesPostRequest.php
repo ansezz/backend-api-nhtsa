@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Nhtsa;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\JsonResponse;
 
 /**
  * @property mixed modelYear
@@ -16,7 +18,7 @@ class VehiclesPostRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -26,12 +28,29 @@ class VehiclesPostRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'modelYear' => 'required',
             'manufacturer' => 'required',
             'model' => 'required',
         ];
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator $validator
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function failedValidation(Validator $validator): JsonResponse
+    {
+        return response()->json(
+            [
+                'Count' => 0,
+                'Results' => []
+            ]
+        );
     }
 }
