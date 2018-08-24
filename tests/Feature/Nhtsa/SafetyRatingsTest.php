@@ -11,24 +11,53 @@ class SafetyRatingsTest extends TestCase
      *
      * @return void
      */
-    public function testVehiclesWithGet()
+    public function testVehiclesWithGet(): void
     {
-        $response = $this->get('/vehicles/2015/Audi/A3');
+        $response = $this->json('GET', '/vehicles/2015/Audi/A3');
 
         $response->assertStatus(200)
             ->assertJsonStructure([
                 'Count',
-                'Results'
+                'Results' => [
+                    '*' => [
+                        'Description',
+                        'VehicleId'
+                    ]
+                ]
             ]);
 
     }
+
+    /**
+     * A vehicles With rating using GET test.
+     *
+     * @return void
+     */
+    public function testVehiclesWithRatingUsingGet(): void
+    {
+        $response = $this->json('GET', '/vehicles/2015/Audi/A3', ['withRating' => true]);
+
+        $response->assertStatus(200)
+            ->assertJsonStructure([
+                'Count',
+                'Results' => [
+                    '*' => [
+                        'CrashRating',
+                        'Description',
+                        'VehicleId'
+                    ]
+                ]
+            ]);
+
+    }
+
 
     /**
      * A vehicles With POST test .
      *
      * @return void
      */
-    public function testVehiclesWithPost()
+    public function testVehiclesWithPost(): void
     {
         $payload = [
             'modelYear' => 2015,
@@ -52,7 +81,7 @@ class SafetyRatingsTest extends TestCase
      *
      * @return void
      */
-    public function testVehiclesWithPostValidation()
+    public function testVehiclesWithPostValidation(): void
     {
         $payload = [
             'modelYear' => 2015
