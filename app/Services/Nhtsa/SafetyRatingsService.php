@@ -3,41 +3,77 @@
 namespace App\Services\Nhtsa;
 
 
+use Illuminate\Support\Facades\Log;
+
 class SafetyRatingsService extends BaseApiService
 {
 
-    const URI_MODEL_YEAR_QUERY = 'SafetyRatings/modelyear/%d/make/%s/model/%s';
+    private const URI_MODEL_YEAR_QUERY = 'SafetyRatings/modelyear/%d/make/%s/model/%s';
+    private const URI_VEHICLE_ID_QUERY = 'SafetyRatings/VehicleId/%d';
+    private const NOT_RATED_VALUE = 'Not Rated';
 
     /**
      * @param $model_year
      * @param $manufacturer
      * @param $model
+     * @param bool $withRating
      * @return mixed
      */
-    public function modelYear($model_year, $manufacturer, $model)
+    public function modelYear($model_year, $manufacturer, $model, $withRating = false): array
     {
-        $uri = sprintf(self::URI_MODEL_YEAR_QUERY, $model_year, $manufacturer, $model);
-
-        $response = $this->apiClient->get($uri, ['query' => ['format' => $this->format]]);
-
         $data = [
             'Count' => 0,
             'Results' => []
         ];
 
-        if ($response->getStatusCode() === 200) {
-            $result = \GuzzleHttp\json_decode($response->getBody());
-            $data['Count'] = $result->Count;
+        try {
+            $uri = sprintf(self::URI_MODEL_YEAR_QUERY, $model_year, $manufacturer, $model);
 
-            $data['Results'] = array_map(function ($item) {
-                return [
-                    'Description' => $item->VehicleDescription,
-                    'VehicleId' => $item->VehicleId,
-                ];
-            }, $result->Results);
+            $response = $this->apiClient->get($uri, ['query' => ['format' => $this->format]]);
+
+            if ($response->getStatusCode() === 200) {
+                $result = \GuzzleHttp\json_decode($response->getBody());
+                $data['Count'] = $result->Count;
+
+                $data['Results'] = array_map(function ($item) use ($withRating) {
+                    $vehicle = [
+                        'Description' => $item->VehicleDescription,
+                        'VehicleId' => $item->VehicleId,
+                    ];
+                    if ($withRating) {
+                        $vehicle['CrashRating'] = $this->vehicleId($item->VehicleId);
+                    }
+                    return $vehicle;
+                }, $result->Results);
+            }
+        } catch (\Exception $exception) {
+            Log::error(' API ERROR : ' . $exception->getMessage());
         }
 
         return $data;
     }
 
+    /**
+     * @param $id
+     * @return string
+     */
+    protected function vehicleId($id): string
+    {
+        try {
+            $uri = sprintf(self::URI_VEHICLE_ID_QUERY, $id);
+
+            $response = $this->apiClient->get($uri, ['query' => ['format' => $this->format]]);
+
+            if ($response->getStatusCode() === 200) {
+                $result = \GuzzleHttp\json_decode($response->getBody());
+                if ($result->Count > 0) {
+                    return (string)$result->Results[0]->OverallRating;
+                }
+            }
+        } catch (\Exception $exception) {
+            Log::error(' API ERROR : ' . $exception->getMessage());
+        }
+
+        return self::NOT_RATED_VALUE;
+    }
 }

@@ -4,6 +4,11 @@ namespace App\Http\Requests\Nhtsa;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property mixed modelYear
+ * @property mixed manufacturer
+ * @property mixed model
+ */
 class VehiclesPostRequest extends FormRequest
 {
     /**
