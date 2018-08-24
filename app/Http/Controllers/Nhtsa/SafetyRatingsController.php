@@ -29,7 +29,7 @@ class SafetyRatingsController extends BaseController
      */
     public function vehicles($model_year, $manufacturer, $model): JsonResponse
     {
-        return response()->json($this->service->modelYear($model_year, $manufacturer, $model, \request()->get('withRating', false)));
+        return response()->json($this->service->modelYear($model_year, $manufacturer, $model, (bool)\request()->get('withRating', false)));
     }
 
     /**

@@ -31,7 +31,7 @@ class SafetyRatingsService extends BaseApiService
 
             $response = $this->apiClient->get($uri, ['query' => ['format' => $this->format]]);
 
-            if ($response->getStatusCode() === 200) {
+            if (200 === $response->getStatusCode()) {
                 $result = \GuzzleHttp\json_decode($response->getBody());
 
                 $data['Results'] = array_map(function ($item) use ($withRating) {
@@ -40,7 +40,8 @@ class SafetyRatingsService extends BaseApiService
                             'Description' => $item->VehicleDescription,
                             'VehicleId' => $item->VehicleId,
                         ];
-                        if ($withRating) {
+
+                        if (true === $withRating) {
                             $vehicle['CrashRating'] = $this->vehicleId($item->VehicleId);
                         }
                         return $vehicle;
