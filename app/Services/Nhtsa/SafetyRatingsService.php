@@ -41,7 +41,7 @@ class SafetyRatingsService extends BaseApiService
                             'VehicleId' => $item->VehicleId,
                         ];
 
-                        if (true === $withRating) {
+                        if ('true' === $withRating) {
                             $vehicle['CrashRating'] = $this->vehicleId($item->VehicleId);
                         }
                         return $vehicle;
