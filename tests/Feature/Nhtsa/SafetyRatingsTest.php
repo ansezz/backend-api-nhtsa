@@ -89,10 +89,10 @@ class SafetyRatingsTest extends TestCase
 
         $response = $this->json('POST', '/vehicles', $payload);
 
-        $response->assertStatus(422)
+        $response->assertStatus(200)
             ->assertJsonStructure([
-                'message',
-                'errors'
+                'Count',
+                'Results'
             ]);
 
     }
