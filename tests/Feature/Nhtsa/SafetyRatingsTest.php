@@ -35,7 +35,7 @@ class SafetyRatingsTest extends TestCase
      */
     public function testVehiclesWithRatingUsingGet(): void
     {
-        $response = $this->json('GET', '/vehicles/2015/Audi/A3', ['withRating' => true]);
+        $response = $this->json('GET', '/vehicles/2015/Audi/A3', ['withRating' => 'true']);
 
         $response->assertStatus(200)
             ->assertJsonStructure([
