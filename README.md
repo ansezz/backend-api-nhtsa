@@ -108,10 +108,12 @@ You can see api DOC in [PetStore.swagger.io](http://petstore.swagger.io/),
 
 Use Generated json : http://nhtsa.laravel-vuejs.com/penapi.json.
 
-Thanks for your time, if you have any question let me know.
 #### References : 
 * [DigitalOcean cloud server](https://m.do.co/c/bb2d64a88148).
 * [How To Install Linux, Nginx, MySQL, PHP (LEMP stack) in Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-in-ubuntu-16-04/)
 * [ How To Use Capistrano to Automate Deployments: Getting Started ](https://www.digitalocean.com/community/tutorials/how-to-use-capistrano-to-automate-deployments-getting-started)
 * [ Deploying a Rails App on Ubuntu 14.04 with Capistrano, Nginx, and Puma](https://www.digitalocean.com/community/tutorials/deploying-a-rails-app-on-ubuntu-14-04-with-capistrano-nginx-and-puma)
 * [NHTSA API ](https://one.nhtsa.gov/webapi/Default.aspx?SafetyRatings/API/5)
+
+
+Thank you for your time, if you have any question let me know.
