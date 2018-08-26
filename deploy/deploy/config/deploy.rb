@@ -3,9 +3,8 @@ lock '3.11.0'
 set :application, 'app'
 set :repo_url, 'git@github.com:ansezz/backend-api-nhtsa.git'
 
-#set :branch, '#{fetch(:branch)}'
-
-ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+ask :branch, `git rev-parse --abbrev-ref master`.chomp
+puts 'branch: ' + fetch(:branch)
 
 set :format, :pretty
 set :log_level, :debug
