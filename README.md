@@ -72,12 +72,13 @@ cap dev deploy
 ## Demo 
 You can try this API in this URL : http://nhtsa.laravel-vuejs.com
 
-####Requirement 1
+#### Requirement 1
 ```bash
 GET http://nhtsa.laravel-vuejs.com/vehicles/<MODEL YEAR>/<MANUFACTURER>/<MODEL>/
 ```
 Example : http://nhtsa.laravel-vuejs.com/vehicles/2015/Audi/A3
-####Requirement 2
+
+#### Requirement 2
 ```bash
 POST http://nhtsa.laravel-vuejs.com/vehicles
 ```
@@ -90,7 +91,7 @@ Which, when called with an application/JSON body as follows:
 }
 ```
 
-####Requirement 3
+#### Requirement 3
 ```bash
 GET http://nhtsa.laravel-vuejs.com/vehicles/<MODEL YEAR>/<MANUFACTURER>/<MODEL>?withRating=true
 ```
