@@ -77,7 +77,11 @@ GET http://nhtsa.laravel-vuejs.com/vehicles/<MODEL YEAR>/<MANUFACTURER>/<MODEL>?
 ```
 Example : http://nhtsa.laravel-vuejs.com/vehicles/2015/Audi/A3?withRating=true
 
-
+### API Doc 
+generate api json documentation using [Swagger](http://zircote.com/swagger-php/)
+```bash
+./vendor/bin/openapi ./app -o ./public/penapi.json  --format json
+```
 #### References : 
 * [DigitalOcean](https://m.do.co/c/bb2d64a88148) : get cloud server.
 * [How To Install Linux, Nginx, MySQL, PHP (LEMP stack) in Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-in-ubuntu-16-04/)
