@@ -15,6 +15,10 @@ git clone git@github.com:ansezz/backend-api-nhtsa.git
 cd backend-api-nhtsa
 composer install
 ```
+#### Run tests
+```bash
+./vendor/bin/phpunit
+```
 
 #### Run development server
 ```bash
@@ -72,3 +76,10 @@ Which, when called with an application/JSON body as follows:
 GET http://nhtsa.laravel-vuejs.com/vehicles/<MODEL YEAR>/<MANUFACTURER>/<MODEL>?withRating=true
 ```
 Example : http://nhtsa.laravel-vuejs.com/vehicles/2015/Audi/A3?withRating=true
+
+
+#### References : 
+* [DigitalOcean](https://m.do.co/c/bb2d64a88148) : get cloud server.
+* [How To Install Linux, Nginx, MySQL, PHP (LEMP stack) in Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-in-ubuntu-16-04/)
+* [ How To Use Capistrano to Automate Deployments: Getting Started ](https://www.digitalocean.com/community/tutorials/how-to-use-capistrano-to-automate-deployments-getting-started)
+* [ Deploying a Rails App on Ubuntu 14.04 with Capistrano, Nginx, and Puma](https://www.digitalocean.com/community/tutorials/deploying-a-rails-app-on-ubuntu-14-04-with-capistrano-nginx-and-puma)
