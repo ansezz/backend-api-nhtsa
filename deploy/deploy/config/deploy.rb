@@ -64,7 +64,7 @@ namespace :php do
   task :restart do
     on roles(:server) do
       print "Restaring php fpm..."
-      execute "sudo service php7.0-fpm restart"
+      execute "sudo service php7.1-fpm restart"
     end
   end
 end
