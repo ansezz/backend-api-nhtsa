@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 class BaseApiService
 {
 
-    const API_BASE_URL = 'https://one.nhtsa.gov/webapi/api/';
+    private const API_BASE_URL = 'https://one.nhtsa.gov/webapi/api/';
 
     protected $apiClient;
     protected $format;
@@ -28,7 +28,7 @@ class BaseApiService
     /**
      * @param string $format
      */
-    public function setFormat($format)
+    public function setFormat($format): void
     {
         $this->format = $format;
     }
