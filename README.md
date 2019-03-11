@@ -49,7 +49,7 @@ cap -T
 ### Update nginx vhosts
 before this command, you need to change your server name and you IP server 
 * IP here  : `deploy/deploy/config/deploy/dev.rb`
-* Server name here : `deploy/ops/nginx/sites-available/nhtsa.laravel-vuejs.com`
+* Server name here : `deploy/ops/nginx/sites-available/local.nhtsa.com`
 ```bash
 cap dev nginx:vhosts  
 ```
