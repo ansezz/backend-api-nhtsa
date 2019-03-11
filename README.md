@@ -72,17 +72,17 @@ cap dev deploy
 ```
 
 ## Demo 
-You can try this API in this URL : http://nhtsa.laravel-vuejs.com
+Example API URL : http://local.nhtsa.com
 
 #### Requirement 1
 ```bash
-GET http://nhtsa.laravel-vuejs.com/vehicles/<MODEL YEAR>/<MANUFACTURER>/<MODEL>/
+GET http://local.nhtsa.com/vehicles/<MODEL YEAR>/<MANUFACTURER>/<MODEL>/
 ```
-Example : http://nhtsa.laravel-vuejs.com/vehicles/2015/Audi/A3
+Example : http://local.nhtsa.com/vehicles/2015/Audi/A3
 
 #### Requirement 2
 ```bash
-POST http://nhtsa.laravel-vuejs.com/vehicles
+POST http://local.nhtsa.com/vehicles
 ```
 Which, when called with an application/JSON body as follows:
 ```bash
@@ -95,9 +95,9 @@ Which, when called with an application/JSON body as follows:
 
 #### Requirement 3
 ```bash
-GET http://nhtsa.laravel-vuejs.com/vehicles/<MODEL YEAR>/<MANUFACTURER>/<MODEL>?withRating=true
+GET http://local.nhtsa.com/vehicles/<MODEL YEAR>/<MANUFACTURER>/<MODEL>?withRating=true
 ```
-Example : http://nhtsa.laravel-vuejs.com/vehicles/2015/Audi/A3?withRating=true
+Example : http://local.nhtsa.com/vehicles/2015/Audi/A3?withRating=true
 
 ### API Doc 
 generate api json documentation using [Swagger](http://zircote.com/swagger-php/)
@@ -106,7 +106,7 @@ generate api json documentation using [Swagger](http://zircote.com/swagger-php/)
 ```
 You can see api DOC in [PetStore.swagger.io](http://petstore.swagger.io/),
 
-Use Generated json : http://nhtsa.laravel-vuejs.com/penapi.json.
+Use Generated json : http://local.nhtsa.com/penapi.json.
 
 #### References : 
 * [DigitalOcean cloud server](https://m.do.co/c/bb2d64a88148).
