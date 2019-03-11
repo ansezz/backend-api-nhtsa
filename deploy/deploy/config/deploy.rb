@@ -55,7 +55,7 @@ namespace :nginx do
  end
  task :vhosts do
    on roles(:server) do
-       upload! "../ops/nginx/sites-available/nhtsa.laravel-vuejs.com", "/etc/nginx/sites-available/nhtsa.laravel-vuejs.com"
+       upload! "../ops/nginx/sites-available/local.nhtsa.com", "/etc/nginx/sites-available/local.nhtsa.com"
    end
  end
 end
